@@ -12,9 +12,9 @@ ${run_benchmark_local} -s /tmp/redis.sock > benchmark.docker.local.unix.csv
 
 run_benchmark_remote="docker exec -it redis_benchmark redis-benchmark -q --csv"
 
-# run test on remote docker redis (tcp socket)
+# run test on remote docker redis (tcp socket / redis:latest)
 ${run_benchmark_remote} -h redis > benchmark.docker.remote.latest.csv
 
-# run test on remote docker redis (tcp socket)
+# run test on remote docker redis (tcp socket / redis:alpine)
 ${run_benchmark_remote} -h redis_alpine > benchmark.docker.remote.alpine.csv
 

@@ -36,6 +36,9 @@ def read_csv(name):
 def main():
     for i,v in enumerate(VARIATIONS):
         df = pd.concat([read_csv(a) for a in v], axis=1)
+        dfm = df.as_matrix()
+        for i, raw in enumerate(dfm):
+            print('|{}|{}|'.format(TEST_NAME[i], '|'.join(str(v) for v in raw)))
         df.plot.bar().get_figure().savefig('fig{}.png'.format(i))
 
 
