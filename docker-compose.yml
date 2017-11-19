@@ -1,0 +1,17 @@
+version: "3"
+services:
+  redis:
+    build: .
+    container_name: redis
+
+  redis-alpine:
+    image: redis:alpine
+    container_name: redis_alpine
+
+  redis-benchmark:
+    build: .
+    links:
+      - "redis"
+      - "redis-alpine"
+    container_name: redis_benchmark
+    

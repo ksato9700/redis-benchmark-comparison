@@ -1,0 +1,4 @@
+*.csv
+*.png
+.python-version
+conda_env.yml
