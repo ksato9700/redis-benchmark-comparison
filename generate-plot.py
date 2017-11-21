@@ -2,11 +2,14 @@ import csv
 import pandas as pd
 from itertools import chain
 
+import matplotlib as mpl
+mpl.use('Agg')
+
 VARIATIONS = (('native.tcp', 'native.unix'),
               ('native.unix', 'docker.local.unix'),
               ('native.tcp', 'docker.local.tcp'),
               ('docker.local.tcp', 'docker.local.unix'),
-              ('docker.local.tcp', 'docker.remote.tcp'),
+              ('docker.local.tcp', 'docker.remote.latest'),
               )
 
 TEST_NAME = ("PING_INLINE",
@@ -37,8 +40,9 @@ def main():
     for i,v in enumerate(VARIATIONS):
         df = pd.concat([read_csv(a) for a in v], axis=1)
         dfm = df.as_matrix()
-        for i, raw in enumerate(dfm):
-            print('|{}|{}|'.format(TEST_NAME[i], '|'.join(str(v) for v in raw)))
+        for j, raw in enumerate(dfm):
+            print('|{}|{}|'.format(TEST_NAME[j], '|'.join(str(v) for v in raw)))
+        print('fig{}.png'.format(i))
         df.plot.bar().get_figure().savefig('fig{}.png'.format(i))
 
 
